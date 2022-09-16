@@ -7,10 +7,10 @@ http.createServer((req, res) => {
     const query = url.parse(req.url, true).query
     let subTotal = query.subTotal
     res.write('<h1>Tax Calculator!</h1>')
-    res.write(`Sub total: $${subTotal}`)
+    res.write(`Sub total: ${accounting.formatMoney(subTotal)}`)
 
-    res.write(`<p>Tax: $${subTotal * 0.13}</p>`)
-    res.write(`<p>Total: $${(parseInt(subTotal * 0.13)) + (parseInt(subTotal))}</p>`)
+    res.write(`<p>Tax: ${accounting.formatMoney(subTotal * 0.13)}</p>`)
+    res.write(`<p>Total: ${accounting.formatMoney((parseInt(subTotal * 0.13)) + (parseInt(subTotal)))}</p>`)
 
     res.end()
 }).listen(3000)
